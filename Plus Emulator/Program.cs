@@ -42,19 +42,22 @@ namespace Plus
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         public static void Main(string[] args)
         {
-            Console.BackgroundColor = ConsoleColor.Black;
+           
 
+            Console.BackgroundColor = ConsoleColor.Black;
+            Auto_Updater.CheckUpdate();
             Console.Clear();
             StartConsoleWindow();
 
 
             StartEverything();
-
+            //Auto_Updater.CheckUpdate();
             StartConnections();
 
 
             while (Plus.IsLive)
             {
+               // Auto_Updater.CheckUpdate();
                 Console.CursorVisible = true;
                 if (Logging.DisabledState)
                     Console.Write("RaidRp> ");
@@ -62,6 +65,7 @@ namespace Plus
 
                 ConsoleCommandHandling.InvokeCommand(Console.ReadLine());
             }
+            
         }
         /// <summary>
         /// Starts the Connections
