@@ -2,6 +2,6 @@
   "name": "RaidRp Emulator",
   "version": "1.2.0503.0950",
   "descriptions": "* Bug fixes and improvements.\r\n * Added Dark Theme.",
-  "pre": "true",
+  "pre": "tru",
   "downloadUrl": "https://github.com/coolme-retros/Raid-Rp-Emulator-V6/releases/download/1.0.0.0/Raid.Rp.Emulator.zip"
 }
