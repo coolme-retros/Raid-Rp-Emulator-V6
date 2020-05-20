@@ -573,7 +573,7 @@ namespace Plus.HabboHotel.RoomBots
                                     "<b>You have been voted GUILTY in court.</b>\n\n You will spend the rest of your sentence in jail.");
                                 Client.GetRoleplay().Was_Trialed = true;
                                 Client.GetRoleplay().SaveQuickStat("trialed", "1");
-                                /*var request = (HttpWebRequest)WebRequest.Create("https://discordapp.com/api/webhooks/691408452823547925/z52Z-intEYuw69jrYyAB_snXyK_yLPsimFrd2Bt4mYIDFvhxo8MxsGaNIS8p0zMYhqy0");
+                                /*var request = (HttpWebRequest)WebRequest.Create("hookhere");
     
                                 var postData = "username=" + Uri.EscapeDataString("");
                                 postData += "&content=" + Uri.EscapeDataString(@"```bash
