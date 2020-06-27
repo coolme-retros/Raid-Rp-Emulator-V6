@@ -31,6 +31,7 @@ using System.Threading;
 using Plus.Security;
 using Plus.HabboHotel.Items.Crafting;
 using Plus.HabboHotel.Items.Crafting;
+using System.Configuration;
 #endregion
 
 namespace Plus.HabboHotel
@@ -183,13 +184,19 @@ namespace Plus.HabboHotel
         internal Game(int conns)
         {
             Console.WriteLine();
-            Out.WriteLine(@" Thank you for using RaidRp Emulator!", @"", ConsoleColor.Green);
-            Out.WriteLine(@" RaidRP Emulator by CoolMe!", @"", ConsoleColor.Green);
+            string welcome = ConfigurationManager.AppSettings.Get("Welcome");
+            string copyright = ConfigurationManager.AppSettings.Get("Copyright");
+            string creator = ConfigurationManager.AppSettings.Get("creator");
+            string version = ConfigurationManager.AppSettings.Get("version");
+            string ascii = ConfigurationManager.AppSettings.Get("ascii");
+            Console.WriteLine(@"" + ascii, @"", ConsoleColor.Cyan);
+            Out.WriteLine(@" "+ welcome, @"", ConsoleColor.Green);
+            Out.WriteLine(@" "+ creator, @"", ConsoleColor.Green);
             Out.WriteLine(@" This Emulator should NOT be released!", @"", ConsoleColor.Red);
-            Out.WriteLine(@" RaidRP Emulator v6.", @"", ConsoleColor.Green);
-            Out.WriteLine(@" A CoolMe Retros Project &copy 2019 By CoolMe Retros. All Rights Reserved", @"", ConsoleColor.Green);
+            Out.WriteLine(@" "+ version, @"", ConsoleColor.Green);
+            Out.WriteLine(@" "+ copyright, @"", ConsoleColor.Green);
             //Out.WriteLine(@" HWID: " + FingerPrint.Value() + " registered under: CoolMe", @"", ConsoleColor.Green);
-            Out.WriteLine(@" Please note that if you were to switch machines, the emulator will NOT boot.", @"", ConsoleColor.Green);
+            //Out.WriteLine(@" Please note that if you were to switch machines, the emulator will NOT boot.", @"", ConsoleColor.Green);
             Console.WriteLine();
 
             Out.WriteLine(@"RaidRp Emulator is initializing...", @"", ConsoleColor.Magenta);

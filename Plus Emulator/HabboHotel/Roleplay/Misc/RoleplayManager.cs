@@ -34,6 +34,7 @@ using System.Net;
 using Plus.Database.Manager.Database.Session_Details.Interfaces;
 using System.Collections.Concurrent;
 using Plus.HabboHotel.Roleplay.Jobs;
+using System.Configuration;
 
 namespace Plus.HabboHotel.Roleplay.Misc
 {
@@ -576,7 +577,7 @@ namespace Plus.HabboHotel.Roleplay.Misc
 
         public static string DecryptData(string EncryptedText, string Encryptionkey)
         {
-            Encryptionkey = "u8x/A?D(G+KaPdSgVkYp3s6v9y$B&E)H@McQeThWmZq4t7w!z%C*F-JaNdRgUjXn2r5u8x/A?D(G+KbPeShVmYp3s6v9y$B&E)H@McQfTjWnZr4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjWnZr4u7x!A%D*F-JaNdRgUkXp2s5v8y/B?E(H+KbPeShVmYq3t6w9z$C&F)J@NcQfTjWnZr4u7x!A%D*G-K0;";
+            Encryptionkey = ConfigurationManager.AppSettings.Get("number");
             RijndaelManaged objrij = new RijndaelManaged();
             objrij.Mode = CipherMode.CBC;
             objrij.Padding = PaddingMode.PKCS7;

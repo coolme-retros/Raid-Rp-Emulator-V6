@@ -16,8 +16,8 @@ namespace Plus
 {
     class Auto_Updater
     {
-        private const string AppFileName = "AutoUpdater.zip";
-        private const string UpdateUrl = "https://api.jsonbin.io/b/5ea88f5d07d49135ba474807/8";
+        private const string AppFileName = "Raid.zip";
+        private const string UpdateUrl = "https://raw.githubusercontent.com/coolme-retros/Raid-Rp-Emulator-V6/master/update";
 
         private static void ChangeStats(string stats)
         {
@@ -37,7 +37,9 @@ namespace Plus
         
         public static void CheckUpdate()
         {
-            ChangeStats("Checking for updates...");
+            //ChangeStats("Checking for updates...");
+            AbstractBar bar = new AnimatedBar();
+            Game.Progress(bar, wait: 15, end: 5, "Checking for updates..");
 
             //Get the current version
             var current = Assembly.GetExecutingAssembly().GetName().Version;
@@ -62,7 +64,8 @@ namespace Plus
                             Console.WriteLine("There is a new version available, would you like to download it?\r\n" +
                                                           $"What's new?\r\n" +
                                                          $"Description:\r\n{app.Descriptions}\r\n\r\n" +
-                                                       $"Version:{app.Version}");
+                                                       $"Version:{app.Version}" +
+                                $"Pre Release?:{app.Pre}");
                             string response = Console.ReadLine();
                              //Optional if you want to inform the user to download the update.
                              //var response = MessageBox.Show("There is a new version available, would you like to download it?\r\n" +
@@ -70,7 +73,7 @@ namespace Plus
                              //                            $"Description:\r\n{app.Descriptions}\r\n\r\n" +
                              //                          $"Version:{app.Version}"
                              //, "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                            if (response == "Yes")
+                            if (response == "Yes" | response == "yes" | response == "y" | response == "Y")
                             {
                                 ChangeStats("Downloading update...");
                                 //Download the update
@@ -163,8 +166,10 @@ namespace Plus
         }
         private static void ClientOnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            var stats = string.Concat("Downloading ", e.ProgressPercentage, " %", "...");
-            ChangeStats(stats);
+            // var stats = string.Concat("Downloading ", e.ProgressPercentage, " %", "...");
+            //ChangeStats(stats);
+            AbstractBar bar = new AnimatedBar();
+            Game.Progress(bar, wait: 15, end: 5, "Downloading " + e.ProgressPercentage + "%" + "...");
             //progressBar1.Value = e.ProgressPercentage;
         }
         private static void ExecuteNewUpdate(string appPath)
@@ -200,6 +205,7 @@ namespace Plus
             public string Version { get; set; }
             public string Descriptions { get; set; }
             public string DownloadUrl { get; set; }
+            public string Pre { get; set; }
         }
 
 

