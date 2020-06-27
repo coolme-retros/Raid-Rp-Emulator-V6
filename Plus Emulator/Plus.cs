@@ -31,6 +31,7 @@ using System.Net;
 using System.Net.Http;
 using System.Management;
 using Plus.HabboHotel.Roleplay.Misc;
+using System.Threading;
 
 namespace Plus
 {
@@ -236,19 +237,50 @@ namespace Plus
         /// </summary>
         internal static void Initialize()
         {
+            Console.WriteLine(@"
+ _____       _     _   _____          ______                 _       _             
+|  __ \     (_)   | | |  __ \        |  ____|               | |     | |            
+| |__) |__ _ _  __| | | |__) |_ __   | |__   _ __ ___  _   _| | __ _| |_ ___  _ __ 
+|  _  // _` | |/ _` | |  _  /| '_ \  |  __| | '_ ` _ \| | | | |/ _` | __/ _ \| '__|
+| | \ \ (_| | | (_| | | | \ \| |_) | | |____| | | | | | |_| | | (_| | || (_) | |   
+|_|  \_\__,_|_|\__,_| |_|  \_\ .__/  |______|_| |_| |_|\__,_|_|\__,_|\__\___/|_|   
+                             | |                                                   
+                             |_|                                                   
+    
+", @"", ConsoleColor.Green);
+            Thread.Sleep(1000);
+            Console.WriteLine(@"
+ ____        
+|  _ \       
+| |_) |_   _ 
+|  _ <| | | |
+| |_) | |_| |
+|____/ \__, |
+        __/ |
+       |___/ ", @"", ConsoleColor.Blue);
+            Thread.Sleep(1000);
+            Console.WriteLine(@"
+  _____            _ __  __        _____      _                 
+ / ____|          | |  \/  |      |  __ \    | |                
+| |     ___   ___ | | \  / | ___  | |__) |___| |_ _ __ ___  ___ 
+| |    / _ \ / _ \| | |\/| |/ _ \ |  _  // _ \ __| '__/ _ \/ __|
+| |___| (_) | (_) | | |  | |  __/ | | \ \  __/ |_| | | (_) \__ \
+ \_____\___/ \___/|_|_|  |_|\___| |_|  \_\___|\__|_|  \___/|___/
+                                                                ", @"", ConsoleColor.Yellow);
+            Thread.Sleep(1000);
             //var request = (HttpWebRequest) WebRequest.Create("http://www.msforum.ml/validation.php");
 
-          //  var postData = "sn=" + FingerPrint.Value() + "";
-          //  postData += "&hwid=" + FingerPrint.Value() + "";
-           // var data = Encoding.ASCII.GetBytes(postData);
+            //  var postData = "sn=" + FingerPrint.Value() + "";
+            //  postData += "&hwid=" + FingerPrint.Value() + "";
+            // var data = Encoding.ASCII.GetBytes(postData);
 
-           // request.Method = "POST";
-           // request.ContentType = "application/x-www-form-urlencoded";
-          //  request.ContentLength = data.Length;
+            // request.Method = "POST";
+            // request.ContentType = "application/x-www-form-urlencoded";
+            //  request.ContentLength = data.Length;
 
-          //  using (var stream = request.GetRequestStream())
+            //  using (var stream = request.GetRequestStream())
             //{
-               // stream.Write(data, 0, data.Length);
+            // stream.Write(data, 0, data.Length);
             //}
 
             //var response = (HttpWebResponse) request.GetResponse();
