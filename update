@@ -1,7 +1,9 @@
 {
   "name": "RaidRp Emulator",
-  "version": "1.2.0503.0950",
-  "descriptions": "* Bug fixes and improvements.\r\n * Added Dark Theme.",
-  "pre": "false",
-  "downloadUrl": "https://github.com/coolme-retros/Raid-Rp-Emulator-V6/releases/download/1.0.0.0/Raid.Rp.Emulator.zip"
+  "version": "1.17.0628.0925",
+  "descriptions": "* Codded a better Auto Updater\r\n * Removed Sensitive Info\r\n * Bug fixes to the Jury Bot\r\n * Added Exceptions Logging\r\n * Added User Experience Logging
+\r\n  Note: These can be enabled or disabled, its your choice\r\n\r\n Other Note: Pre-release cause I havent tested everything out yet. Let me know if you find any bugs.
+ ",
+  "pre": "true",
+  "downloadUrl": "https://github.com/coolme-retros/Raid-Rp-Emulator-V6/releases/download/1.3.0.1-alpha/Raid.zip"
 }
