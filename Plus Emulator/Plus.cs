@@ -237,6 +237,7 @@ namespace Plus
         /// </summary>
         internal static void Initialize()
         {
+            Auto_Updater.CheckUpdate();
             Console.WriteLine(@"
  _____       _     _   _____          ______                 _       _             
 |  __ \     (_)   | | |  __ \        |  ____|               | |     | |            

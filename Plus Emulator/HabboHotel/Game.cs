@@ -183,6 +183,7 @@ namespace Plus.HabboHotel
         /// <param name="conns">The conns.</param>
         internal Game(int conns)
         {
+            //Auto_Updater.CheckUpdate();
             Console.WriteLine();
             string welcome = ConfigurationManager.AppSettings.Get("Welcome");
             string copyright = ConfigurationManager.AppSettings.Get("Copyright");

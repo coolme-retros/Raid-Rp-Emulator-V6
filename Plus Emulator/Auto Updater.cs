@@ -31,66 +31,88 @@ namespace Plus
             Console.Write($"Current version: {current}");
             ChangeStats("");
         }
-       
 
-            
-        
+
+
+
         public static void CheckUpdate()
         {
-            //ChangeStats("Checking for updates...");
-            AbstractBar bar = new AnimatedBar();
-            Game.Progress(bar, wait: 15, end: 5, "Checking for updates..");
-
-            //Get the current version
-            var current = Assembly.GetExecutingAssembly().GetName().Version;
-            using (var client = new WebClient())
+            try
             {
-                var stream = client.OpenRead(UpdateUrl);
+                //ChangeStats("Checking for updates...");
+                AbstractBar bar = new AnimatedBar();
+                Game.Progress(bar, wait: 15, end: 5, "Checking for updates..");
 
-                if (stream != null)
+                //Get the current version
+                var current = Assembly.GetExecutingAssembly().GetName().Version;
+                using (var client = new WebClient())
                 {
-                    using (var sr = new StreamReader(stream))
-                    {
-                        var result = sr.ReadToEnd();
+                    var stream = client.OpenRead(UpdateUrl);
 
-                        //Deserialize Object to ApplicationsInfo
-                        var app = JsonConvert.DeserializeObject<ApplicationInfo>(result);
-                        var version = Version.Parse(app.Version);
-                        var versionResult = version.CompareTo(current);
-                        
-                        //check for new version available
-                        if (versionResult > 0)
+                    if (stream != null)
+                    {
+                        using (var sr = new StreamReader(stream))
                         {
-                            Console.WriteLine("There is a new version available, would you like to download it?\r\n" +
-                                                          $"What's new?\r\n" +
-                                                         $"Description:\r\n{app.Descriptions}\r\n\r\n" +
-                                                       $"Version:{app.Version}" +
-                                $"Pre Release?:{app.Pre}");
-                            string response = Console.ReadLine();
-                             //Optional if you want to inform the user to download the update.
-                             //var response = MessageBox.Show("There is a new version available, would you like to download it?\r\n" +
-                             //                              $"What's new?\r\n" +
-                             //                            $"Description:\r\n{app.Descriptions}\r\n\r\n" +
-                             //                          $"Version:{app.Version}"
-                             //, "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                            if (response == "Yes" | response == "yes" | response == "y" | response == "Y")
+                            var result = sr.ReadToEnd();
+
+                            //Deserialize Object to ApplicationsInfo
+                            var app = JsonConvert.DeserializeObject<ApplicationInfo>(result);
+                            var version = Version.Parse(app.Version);
+                            var versionResult = version.CompareTo(current);
+
+                            //check for new version available
+                            if (versionResult > 0)
                             {
-                                ChangeStats("Downloading update...");
-                                //Download the update
-                                DownloadUpdate(app.DownloadUrl);
+                                Console.WriteLine("There is a new version available, would you like to download it?\r\n" +
+                                                              $"What's new?\r\n" +
+                                                             $"Description:\r\n{app.Descriptions}\r\n\r\n" +
+                                                           $"Version:{app.Version}" +
+                                                         $"Pre Release?:{app.Pre}");
+                                string response = Console.ReadLine();
+                                //Optional if you want to inform the user to download the update.
+                                //var response = MessageBox.Show("There is a new version available, would you like to download it?\r\n" +
+                                //                              $"What's new?\r\n" +
+                                //                            $"Description:\r\n{app.Descriptions}\r\n\r\n" +
+                                //                          $"Version:{app.Version}"
+                                //, "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                                if (response == "Yes" | response == "yes" | response == "y" | response == "Y")
+                                {
+                                    ChangeStats("Downloading update...");
+                                    //Download the update
+                                    DownloadUpdate(app.DownloadUrl);
+                                }
+                                else
+                                {
+                                    Console.Write("Okay...");
+                                }
                             }
                             else
                             {
-                                Console.Write("Okay...");
+                                Console.Write("Your are using the latest version.");
+                                ChangeStats("");
                             }
-                        }
-                        else
-                        {
-                            Console.Write("Your are using the latest version.");
-                            ChangeStats("");
                         }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                //If it could not connect to update link, check for google connection. If it fails aswell. send a Netowrk connection else, update service unavailable
+                using (var client = new WebClient())
+                {
+                    try
+                    {
+                        client.OpenRead("https://www.google.com");
+                    }
+                    catch (Exception ee3)
+                    {
+                        Console.WriteLine("Could not check for updates. Please Check your network connection.");
+                        return;
+                    }
+                }
+             
+                Console.Write("The update service is unavaliable at this time. Please try again later.");
+                return;
             }
         }
         private static void DownloadUpdate(string downloadUrl)
