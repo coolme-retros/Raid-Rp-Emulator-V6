@@ -39,7 +39,7 @@ namespace Plus.HabboHotel
     /// <summary>
     /// Class Game.
     /// </summary>
-    internal class Game
+    public class Game
     {
         /// <summary>
         /// Jailbreaking
@@ -445,7 +445,7 @@ namespace Plus.HabboHotel
         /// Gets the client manager.
         /// </summary>
         /// <returns>GameClientManager.</returns>
-        internal GameClientManager GetClientManager()
+        public GameClientManager GetClientManager()
         {
             return _clientManager;
         }

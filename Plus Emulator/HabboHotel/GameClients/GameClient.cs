@@ -102,7 +102,7 @@ namespace Plus.HabboHotel.GameClients
         /// Gets the connection.
         /// </summary>
         /// <returns>ConnectionInformation.</returns>
-        internal ConnectionInformation GetConnection()
+        public ConnectionInformation GetConnection()
         {
             return _connection;
         }
@@ -120,11 +120,11 @@ namespace Plus.HabboHotel.GameClients
         /// Gets the habbo.
         /// </summary>
         /// <returns>Habbo.</returns>
-        internal Habbo GetHabbo()
+        public Habbo GetHabbo()
         {
             return _habbo;
         }
-        internal RoleplayInstance GetRoleplay()
+        public RoleplayInstance GetRoleplay()
         {
             return _roleplay;
         }
@@ -404,7 +404,7 @@ namespace Plus.HabboHotel.GameClients
         /// Sends the whisper.
         /// </summary>
         /// <param name="message">The message.</param>
-        internal void SendWhisper(string message, bool fromWired = false, int Bubble = 0, bool RemoveAfter = true)
+        public void SendWhisper(string message, bool fromWired = false, int Bubble = 0, bool RemoveAfter = true)
         {
             if (GetHabbo() == null || GetHabbo().CurrentRoom == null)
                 return;

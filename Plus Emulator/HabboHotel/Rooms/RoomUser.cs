@@ -136,7 +136,7 @@ namespace Plus.HabboHotel.Rooms
         /// <summary>
         /// The can walk
         /// </summary>
-        internal bool CanWalk;
+        public bool CanWalk;
 
         /// <summary>
         /// The allow override

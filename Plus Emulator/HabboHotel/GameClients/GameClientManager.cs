@@ -20,12 +20,12 @@ namespace Plus.HabboHotel.GameClients
     /// <summary>
     /// Class GameClientManager.
     /// </summary>
-    internal class GameClientManager
+    public class GameClientManager
     {
         /// <summary>
         /// The clients
         /// </summary>
-        internal ConcurrentDictionary<uint, GameClient> Clients;
+        public ConcurrentDictionary<uint, GameClient> Clients;
 
         /// <summary>
         /// The _clients add queue

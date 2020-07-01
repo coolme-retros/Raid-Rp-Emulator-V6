@@ -124,7 +124,7 @@ namespace Plus
         /// <summary>
         /// The _game
         /// </summary>
-        private static Game _game;
+        public static Game _game;
 
         /// <summary>
         /// The _languages
@@ -720,7 +720,7 @@ namespace Plus
         /// Get's the Game Environment Handler
         /// </summary>
         /// <returns>Game.</returns>
-        internal static Game GetGame()
+        public static Game GetGame()
         {
             return _game;
         }
@@ -770,7 +770,7 @@ namespace Plus
         /// Get's the Database Manager Handler
         /// </summary>
         /// <returns>DatabaseManager.</returns>
-        internal static DatabaseManager GetDatabaseManager()
+        public static DatabaseManager GetDatabaseManager()
         {
             return Manager;
         }
@@ -796,7 +796,7 @@ namespace Plus
         /// </summary>
         /// <param name="restart">if set to <c>true</c> [restart].</param>
         /// Set a Different Message in Hotel
-        internal static void PerformShutDown(bool restart)
+        public static void PerformShutDown(bool restart)
         {
             var now = DateTime.Now;
             Cache.StopProcess();

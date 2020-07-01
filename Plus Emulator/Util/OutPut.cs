@@ -2,7 +2,7 @@
 
 namespace Plus
 {
-    internal class Out
+    public class Out
     {
         /// <summary>
         /// Writes the line.

@@ -107,7 +107,7 @@ namespace Plus.Configuration
         /// Disables the primary writing.
         /// </summary>
         /// <param name="clearConsole">if set to <c>true</c> [clear console].</param>
-        internal static void DisablePrimaryWriting(bool clearConsole)
+        public static void DisablePrimaryWriting(bool clearConsole)
         {
             Writer.Writer.DisablePrimaryWriting(clearConsole);
         }

@@ -41,7 +41,7 @@ namespace Plus.HabboHotel.Users
         /// <summary>
         /// The user name
         /// </summary>
-        internal string UserName, RealName, Motto, Look, Gender;
+        public string UserName, RealName, Motto, Look, Gender;
 
         /// <summary>
         /// The create date
@@ -254,7 +254,7 @@ namespace Plus.HabboHotel.Users
         /// </summary>
         internal bool AppearOffline;
 
-        internal RoomUser GetRoomUser()
+        public RoomUser GetRoomUser()
         {
             RoomUser RUser = null;
             try
@@ -627,7 +627,7 @@ namespace Plus.HabboHotel.Users
         /// Gets the current room.
         /// </summary>
         /// <value>The current room.</value>
-        internal Room CurrentRoom
+        public Room CurrentRoom
         {
             get
             {
